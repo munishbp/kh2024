@@ -1,0 +1,9 @@
+Install openssh- https://creodias.docs.cloudferro.com/en/latest/networking/How-to-install-OpenSSH-on-Windows-Server-2016-VM-on-Creodias.html
+
+https://www.wireshark.org/download.html
+
+https://nmap.org/download#windows
+
+https://www.snort.org/
+
+https://www.ossec.net/ossec-downloads/
