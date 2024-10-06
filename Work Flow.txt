@@ -1,0 +1,93 @@
+Initial Assessment:
+
+Connect to the helm box using the provided credentials.
+Familiarize yourself with the current configuration of SSH and DNS services.
+
+
+Secure SSH:
+a. Update and patch:
+
+Ensure your SSH server (likely OpenSSH) is up to date.
+Apply any available security patches.
+
+b. Configure SSH:
+
+Locate and edit the SSH configuration file (typically sshd_config).
+Disable root login: Set "PermitRootLogin no".
+Use SSH protocol 2: Ensure "Protocol 2" is set.
+Limit user access: Use "AllowUsers" to specify which users can connect via SSH.
+
+c. Strengthen authentication:
+
+Implement key-based authentication instead of passwords.
+Generate SSH keys for authorized users.
+Add public keys to the authorized_keys file for each user.
+
+d. Adjust SSH settings:
+
+Change the default SSH port from 22 to a non-standard port (e.g., 2222).
+Limit login attempts: Set "MaxAuthTries 3".
+Set idle timeout: Add "ClientAliveInterval 300" and "ClientAliveCountMax 3".
+
+e. Firewall configuration:
+
+Configure Windows Firewall to only allow SSH connections from trusted IP addresses.
+
+
+Secure DNS:
+a. Update and patch:
+
+Ensure your DNS server software is up to date.
+Apply any available security patches.
+
+b. Configure DNS:
+
+Verify that the required DNS record (sails.plinko.horse -> 172.16.t.20) is correctly set up.
+Remove any unnecessary DNS records or zones.
+
+c. Implement DNS security measures:
+
+Enable DNSSEC (Domain Name System Security Extensions) to add authentication to DNS responses.
+Configure DNS to use TCP instead of UDP for large responses to prevent amplification attacks.
+
+d. Restrict zone transfers:
+
+Allow zone transfers only to authorized secondary DNS servers.
+Use ACLs (Access Control Lists) to restrict who can request zone transfers.
+
+e. Implement query restrictions:
+
+Configure the DNS server to only respond to queries from authorized clients.
+Use ACLs to limit which IP addresses can make DNS queries.
+
+f. Monitor DNS traffic:
+
+Enable logging for DNS queries and responses.
+Regularly review logs for suspicious activities.
+
+
+General system hardening:
+
+Disable unnecessary services and features.
+Implement strong password policies.
+Keep the system updated with the latest security patches.
+Install and configure antivirus software.
+
+
+Regular maintenance:
+
+Schedule regular security audits.
+Keep an eye on the scoreboard to ensure services remain operational.
+Be prepared to revert changes if they cause issues with the scored services.
+
+
+Documentation:
+
+Document all changes made to configurations.
+Keep notes on what worked and what didn't for future reference.
+
+
+Continuous learning:
+
+Stay informed about new security threats and best practices.
+Be ready to adapt your security measures as the competition progresses.
