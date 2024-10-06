@@ -1,0 +1,29 @@
+# SSH Key Rotation Script
+
+# Configuration
+$sshKeyPath = "C:\Users\hkeating\.ssh\id_rsa"
+$authorizedKeysPath = "C:\ProgramData\ssh\administrators_authorized_keys"
+$rotationInterval = 900  # 15 min in seconds
+
+# Function to generate new SSH key pair
+function Generate-SSHKey {
+    ssh-keygen -t rsa -b 4096 -f $sshKeyPath -N '""'
+}
+
+# Function to update authorized_keys file
+function Update-AuthorizedKeys {
+    $publicKey = Get-Content "${sshKeyPath}.pub"
+    Set-Content -Path $authorizedKeysPath -Value $publicKey
+}
+
+# Main loop
+while ($true) {
+    Write-Host "Generating new SSH key pair..."
+    Generate-SSHKey
+
+    Write-Host "Updating authorized_keys file..."
+    Update-AuthorizedKeys
+
+    Write-Host "Key rotation complete. Waiting for next rotation..."
+    Start-Sleep -Seconds $rotationInterval
+}
